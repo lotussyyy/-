@@ -318,7 +318,8 @@ body.reading .hud{opacity:0;pointer-events:none}
 .facts dt{font-family:'Noto Serif KR',serif;font-weight:600;font-size:.9em;color:#7a5222}
 .facts dd{font-size:.92em;line-height:1.6;padding-bottom:.55em;border-bottom:1px solid rgba(166,124,52,.22)}
 .single .areas li{grid-template-columns:1fr;gap:.15em}
-.mapbox{position:relative;margin:.6em 0 .3em;aspect-ratio:16/10;border-radius:2px;overflow:hidden;padding:4px;background:#fffaf0;box-shadow:0 0 0 1px rgba(166,124,52,.5),0 8px 18px rgba(60,35,10,.15)}
+.mapbox{position:relative;margin:.6em 0 .3em;aspect-ratio:2/1;border-radius:2px;overflow:hidden;padding:4px;background:#fffaf0;box-shadow:0 0 0 1px rgba(166,124,52,.5),0 8px 18px rgba(60,35,10,.15)}
+.mapbox img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover;display:block}
 .mapbox iframe{position:relative;z-index:1;width:100%;height:100%;border:0;display:block;filter:sepia(.25) saturate(.9)}
 .mapfb{position:absolute;inset:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;text-align:center;font-size:.9em;color:#5a4330;
   background:repeating-linear-gradient(45deg,#f3e8cf 0 12px,#efe2c4 12px 24px)}
@@ -1089,8 +1090,7 @@ page('about',`${head('about','경산 캠퍼스,<br>사회과학대학의 한 자
   <dt>이웃 학과</dt><dd>사회학 · 미디어커뮤니케이션 · 심리학 · 아동가정복지 · 청소년상담복지 · 사회복지 · 지역사회개발·복지 등</dd>
   <dt>학위 과정</dt><dd>학사 · 석사 · 박사</dd>
 </dl>
-<div class="mapbox"><iframe title="대구대학교 사회과학대학 위치" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=%EB%8C%80%EA%B5%AC%EB%8C%80%ED%95%99%EA%B5%90%20%EC%82%AC%ED%9A%8C%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99&z=16&hl=ko&output=embed"></iframe>
-<div class="mapfb"><b>대구대학교 사회과학대학</b>경산시 진량읍 대구대로 201</div></div>
+<div class="mapbox"><img src="${PH}campus-map.jpg" alt="대구대학교 경산캠퍼스 지도, 사회과학대학(사회과학1관·3관) 위치가 빨간색으로 표시됨" loading="lazy"></div>
 <a class="maplink" href="https://map.kakao.com/link/search/%EB%8C%80%EA%B5%AC%EB%8C%80%ED%95%99%EA%B5%90%20%EC%82%AC%ED%9A%8C%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99" target="_blank" rel="noopener">지도에서 크게 보기 ↗</a>`);
 
 /* ---------- CHAPTER 02 학과의 발자취 ---------- */
@@ -1251,7 +1251,6 @@ function hydrate(el,i){
   el.querySelectorAll('[data-act]').forEach(b=>b.onclick=()=>b.dataset.act==='close'?closeBook():restart());
   el.querySelectorAll('[data-goto-ch]').forEach(b=>b.onclick=()=>goTo(chOf(b.dataset.gotoCh).start));
   // claude.ai 미리보기에서는 외부 지도를 띄울 수 없어 대체 그림을 보여 줌
-  if(window.claude&&typeof window.claude.use==='function')el.querySelectorAll('.mapbox iframe').forEach(f=>f.remove());
   el.querySelectorAll('[data-goto-page]').forEach(b=>b.onclick=()=>goTo(b.dataset.gotoPage==='last'?MAIN_LEN-1:+b.dataset.gotoPage));
   el.querySelectorAll('[data-toc]').forEach(ul=>fillToc(ul));
   el.querySelectorAll('[data-gb-form]').forEach(f=>bindForm(f));
