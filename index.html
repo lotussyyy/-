@@ -436,14 +436,14 @@ body.reading .hud{opacity:0;pointer-events:none}
 /* 책갈피 인덱스(가죽 탭) */
 .ribbons{position:absolute;top:-58px;left:calc(9% + 84px);right:3%;display:flex;gap:4px;z-index:-1;opacity:0;transition:opacity .5s 1.3s}
 .book.open .ribbons{opacity:1}
-.ribbons button{flex:1;min-width:0;height:70px;padding:9px 4px 0;border:1px solid rgba(201,160,74,.85);border-bottom:none;border-radius:8px 8px 0 0;
-  font-family:'Noto Serif KR','Gowun Batang',serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:#fbecc0;white-space:nowrap;overflow:hidden;text-overflow:clip;
+.ribbons button{flex:1;min-width:0;height:70px;padding:9px 4px 0;border:1px solid #9ea3a8;border-bottom:none;border-radius:8px 8px 0 0;
+  font-family:'Noto Serif KR','Gowun Batang',serif;font-size:13px;font-weight:600;letter-spacing:.02em;color:#2e3236;white-space:nowrap;overflow:hidden;text-overflow:clip;
   display:flex;align-items:flex-start;justify-content:center;gap:.25em;
-  background:var(--tex-leather),linear-gradient(rgba(255,255,255,.12),rgba(0,0,0,.18)),var(--cc);filter:brightness(1.35) saturate(1.05);
-  box-shadow:0 -2px 6px rgba(0,0,0,.35),inset 0 2px 0 rgba(255,235,180,.35);transform:translateY(8px);transition:transform .2s,filter .2s}
-.ribbons button em{font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:600;font-size:1.12em;color:#f3dc8a}
+  background:linear-gradient(115deg,#8d9297 0%,#d9dde1 20%,#f7f8f9 34%,#b7bcc1 50%,#eef0f2 66%,#9aa0a6 84%,#d3d7db 100%);
+  box-shadow:0 -2px 6px rgba(0,0,0,.35),inset 0 2px 0 rgba(255,255,255,.65);transform:translateY(8px);transition:transform .2s,box-shadow .2s}
+.ribbons button em{font-family:'Cormorant Garamond',serif;font-style:normal;font-weight:600;font-size:1.12em;color:#4a5056}
 .ribbons button:hover{transform:translateY(0)}
-.ribbons button.on{transform:translateY(-4px);filter:brightness(1.6) saturate(1.1);box-shadow:0 -4px 12px rgba(255,220,140,.45),inset 0 2px 0 #f3dc8a;color:#fff}
+.ribbons button.on{transform:translateY(-4px);color:#16191c;box-shadow:0 -4px 12px rgba(230,236,242,.55),inset 0 2px 0 #fff}
 
 /* 책 위에 꽂힌 목차 인덱스 */
 .toptab{position:absolute;top:-72px;left:9%;z-index:-1;height:84px;min-width:70px;padding:12px 16px 0;border:1px solid #c9a04a;border-bottom:none;border-radius:10px 10px 0 0;
