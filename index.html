@@ -500,6 +500,20 @@ body.reading .hud{opacity:0;pointer-events:none}
 .toptab:hover,.toptab.on{transform:translateY(-6px)}
 .toptab.on{box-shadow:0 -4px 12px rgba(255,220,140,.6),inset 0 2px 0 rgba(255,255,255,.5)}
 .book.riffle .toptab{opacity:0 !important;transition:none}
+.toptab{transform-origin:50% 100%}
+/* 책을 덮을 때 인덱스가 표지를 따라 차례로 접혀 들어감 */
+.book.folding .ribbons{opacity:1;transition:none}
+.book.folding .toptab{opacity:0;transform:translateY(96%) scaleY(.15);transition:transform .45s cubic-bezier(.55,0,.8,.35),opacity .25s ease .22s}
+.book.folding .ribbons button{opacity:0;transform:translateY(96%) scaleY(.15);transform-origin:50% 100%;transition:transform .45s cubic-bezier(.55,0,.8,.35),opacity .25s ease .22s}
+.book.folding .ribbons button:nth-child(1){transition-delay:0.07s,0.29s}
+.book.folding .ribbons button:nth-child(2){transition-delay:0.14s,0.36s}
+.book.folding .ribbons button:nth-child(3){transition-delay:0.21s,0.43s}
+.book.folding .ribbons button:nth-child(4){transition-delay:0.28s,0.50s}
+.book.folding .ribbons button:nth-child(5){transition-delay:0.35s,0.57s}
+.book.folding .ribbons button:nth-child(6){transition-delay:0.42s,0.64s}
+.book.folding .ribbons button:nth-child(7){transition-delay:0.49s,0.71s}
+.book.folding .ribbons button:nth-child(8){transition-delay:0.56s,0.78s}
+
 .single .toptab{top:-62px;height:70px;left:5%;font-size:13px;min-width:50px;padding:11px 8px 0;letter-spacing:.04em}
 /* 목차 팝업 */
 #tocPop{position:fixed;inset:0;z-index:48;background:rgba(20,10,4,.55);display:none;align-items:center;justify-content:center;padding:1em}
@@ -1429,7 +1443,7 @@ async function recedeBook(){
   void cover.offsetWidth;cover.style.transition='transform .9s cubic-bezier(.45,.05,.3,1)';
   playFlip({rate:.88,vol:.8})||sfxPaper(.5,.18);
   book.style.transition='transform .9s cubic-bezier(.3,.7,.3,1)';
-  book.className='book appear';cover.classList.remove('opened');
+  book.className='book appear folding';cover.classList.remove('opened');
   await sleep(880);sfxThump();
   // 2) 잠깐 머문 뒤 멀리 작은 점처럼 멀어짐
   await sleep(380);
