@@ -431,12 +431,13 @@ body.reading .hud{opacity:0;pointer-events:none}
 .bnav button.toc-btn{background:var(--foil);color:#2d1b08;border-color:#fbeaa6}
 .bnav button:disabled{opacity:.35;cursor:default}
 .bnav span{color:#fbecc0;text-shadow:0 1px 2px rgba(0,0,0,.6);font-size:14px;min-width:4.5em;text-align:center;font-family:'Gowun Batang',serif;letter-spacing:.1em}
-.xbtn{position:absolute;right:20px;bottom:18px;z-index:12;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  font-size:15px;line-height:1;color:#5a3a1c;background:rgba(255,250,240,.85);border:1px solid rgba(166,124,52,.7);box-shadow:0 1px 4px rgba(60,35,10,.25);
+.xbtn{position:absolute;right:-6px;bottom:-62px;z-index:12;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:14px;line-height:1;color:#f6e7b8;background:var(--tex-leather),linear-gradient(#7a4526,#4a2614);border:1.5px solid #c9a04a;box-shadow:0 3px 8px rgba(0,0,0,.45);
   opacity:0;pointer-events:none;transition:opacity .4s,background .2s,color .2s,transform .2s}
-.book.open .xbtn{opacity:.8;pointer-events:auto}
+.book.open .xbtn{opacity:.9;pointer-events:auto;transition-delay:1.2s,0s,0s,0s}
 .book.riffle .xbtn{opacity:0 !important;pointer-events:none}
-.xbtn:hover,.xbtn:focus-visible{opacity:1;background:#4a2a14;color:#f6e7b8;transform:scale(1.08);outline:none}
+.xbtn:hover,.xbtn:focus-visible{opacity:1;filter:brightness(1.2);transform:scale(1.08);outline:none}
+.single .xbtn{bottom:-58px;right:-4px}
 /* 비단 책갈피 끈 */
 .silk{position:absolute;left:82%;top:calc(100% + 4px);width:15px;height:78px;z-index:-1;opacity:0;transition:opacity .5s 1.3s;
   background:linear-gradient(90deg,#5a1020,#9a2a3a 45%,#c0485a 55%,#7a1a2a);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);filter:drop-shadow(1px 2px 2px rgba(0,0,0,.5))}
