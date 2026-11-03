@@ -1421,10 +1421,32 @@ async function openBook(){
   book.classList.add('open');cover.classList.add('opened');setTimeout(placeX,1300);
   await sleep(1750);cover.style.display='none';
 }
+/* 책 덮기: 표지가 덮인 뒤, 다가올 때처럼 천천히 멀어지며 사라짐 */
+async function recedeBook(){
+  const X=single()?0:-25;
+  // 1) 표지를 다시 보이게 하고 덮음
+  cover.style.transition='none';cover.classList.add('opened');cover.style.display='';
+  void cover.offsetWidth;cover.style.transition='transform .9s cubic-bezier(.45,.05,.3,1)';
+  playFlip({rate:.88,vol:.8})||sfxPaper(.5,.18);
+  book.style.transition='transform .9s cubic-bezier(.3,.7,.3,1)';
+  book.className='book appear';cover.classList.remove('opened');
+  await sleep(880);sfxThump();
+  // 2) 잠깐 머문 뒤 멀리 작은 점처럼 멀어짐
+  await sleep(380);
+  book.style.transform=tf(0,1,0,X);void book.offsetWidth;
+  book.style.transition='transform 1.7s cubic-bezier(.55,.05,.7,.35),opacity 1.1s ease .6s';
+  book.style.transform=tf(70,.12,32,X);book.style.opacity='0';
+  await sleep(1350);
+  bookWrap.style.transition='opacity .5s ease';bookWrap.style.opacity='0';
+  await sleep(520);
+  bookWrap.classList.remove('show');document.body.classList.remove('reading');
+  bookWrap.style.transition='';bookWrap.style.opacity='';
+  book.style.transition='none';book.className='book';book.style.transform='';book.style.opacity='';cover.style.transition='';
+  void book.offsetWidth;book.style.transition='';
+}
 async function closeBook(){
   if(state==='closing')return;const first=state!=='reread';state='closing';closeToc();
-  playFlip({rate:.88,vol:.8})||sfxPaper(.5,.18);book.classList.remove('open','appear');
-  await sleep(700);bookWrap.classList.remove('show');document.body.classList.remove('reading');
+  await recedeBook();
   ferret.classList.remove('glow');
   if(first){
     await carryAndDrop();
