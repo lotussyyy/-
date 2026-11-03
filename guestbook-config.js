@@ -1,10 +1,10 @@
 /*
  * 방명록 연결 설정
  * ---------------------------------------------------------------
- * README.md의 "방명록 연결하기"를 따라 만든 Google Apps Script
+ * SETUP.md의 "방명록 연결하기"를 따라 만든 Google Apps Script
  * 웹 앱 주소(https://script.google.com/macros/s/..../exec)를
  * 아래 따옴표 안에 붙여 넣고 저장하세요.
  *
  * 비워 두면 '미리보기 모드'로 동작합니다. (글이 그 기기에만 저장됨)
  */
-window.GUESTBOOK_URL = '';
+window.GUESTBOOK_URL = 'https://script.google.com/macros/s/AKfycbxlZ5cAOuODwUZSusJ02-iM9l16tJe4VSI2lUxSinOKKOGPUoGldUCHmB82CzR-_dOt/exec';
