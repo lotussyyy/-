@@ -39,6 +39,9 @@ button{font-family:inherit;cursor:pointer}
 .shaft{position:absolute;top:10%;width:18%;height:90%;background:linear-gradient(rgba(255,240,200,.35),rgba(255,240,200,0));transform:skewX(-14deg);filter:blur(6px);pointer-events:none;mix-blend-mode:screen}
 .sign{position:absolute;top:2.2%;left:50%;transform:translateX(-50%);background:#24402f;color:var(--gold2);padding:.5em 1.4em;border-radius:8px;border:2px solid var(--gold);font-family:'Gowun Batang',serif;font-weight:700;font-size:clamp(13px,1.85vw,24px);letter-spacing:.06em;white-space:nowrap;box-shadow:0 6px 16px rgba(0,0,0,.3);z-index:2;display:flex;align-items:center;gap:.5em}
 .sign img{height:1.5em}
+.sign .sign-emo{font-size:1.15em;line-height:1;display:inline-block;animation:signBob 3s ease-in-out infinite}
+.sign .sign-emo:last-child{animation-delay:1.5s}
+@keyframes signBob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-2px) rotate(-6deg)}}
 .mote{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(255,245,210,.9);filter:blur(.5px);animation:mote linear infinite;pointer-events:none}
 @keyframes mote{from{transform:translate(0,0);opacity:0}15%{opacity:.9}to{transform:translate(40px,-160px);opacity:0}}
 
@@ -557,7 +560,7 @@ body.reading .hud{opacity:0;pointer-events:none}
   <div class="shaft" style="right:2%"></div>
   <div class="shelves" style="left:18%;width:30%" data-shelf></div>
   <div class="shelves" style="left:52%;width:28%" data-shelf></div>
-  <div class="sign"><img src="images/du-symbol.png" alt="">부엉부엉 숲속의 비밀 도서관</div>
+  <div class="sign"><span class="sign-emo" aria-hidden="true">🦉</span>부엉부엉 숲속의 비밀 도서관<span class="sign-emo" aria-hidden="true">🌳</span></div>
   <div class="wainscot"></div>
   <div class="floor"></div>
   <div class="rug"></div>
