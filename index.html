@@ -339,6 +339,11 @@ body.reading .hud{opacity:0;pointer-events:none}
 .grade{display:grid;grid-template-columns:3.6em 1fr;gap:.6em;padding:.7em 0;border-bottom:1px solid rgba(166,124,52,.22);align-items:start}
 .grade .g{font-family:'Noto Serif KR',serif;font-weight:600;color:#fff;background:var(--cc,#2f5a3e);text-align:center;border-radius:2px;padding:.15em 0;font-size:.88em}
 .grade p{font-size:.86em;color:#7a6450;margin-bottom:.35em}
+.profs{display:grid;grid-template-columns:1fr 1fr;gap:.7em;margin:.7em 0}
+.prof{display:flex;flex-direction:column;align-items:center;text-align:center;gap:.2em;padding:.8em .4em;background:rgba(255,253,247,.55);border:1px solid rgba(166,124,52,.25);border-radius:2px}
+.prof .medal{width:clamp(60px,5.6vw,78px)}.prof .medal svg{width:82%;height:82%}
+.prof b{font-family:'Noto Serif KR',serif;font-weight:600;color:#2b1a0c;margin-top:.3em}
+.prof small{font-family:'Cormorant Garamond',serif;font-size:.95em;color:#9a7430;letter-spacing:.04em}
 /* 방명록 */
 .gb-form label.f{display:block;font-family:'Noto Serif KR',serif;font-weight:600;font-size:.86em;color:#5a3a1c;margin:.7em 0 .3em;letter-spacing:.03em}
 .gb-form input[type=text],.gb-form textarea{width:100%;font:inherit;font-size:.95em;border:1px solid rgba(166,124,52,.45);border-radius:2px;padding:.6em .75em;background:rgba(255,253,247,.85);color:#2b1a0c}
@@ -426,7 +431,12 @@ body.reading .hud{opacity:0;pointer-events:none}
 .bnav button.toc-btn{background:var(--foil);color:#2d1b08;border-color:#fbeaa6}
 .bnav button:disabled{opacity:.35;cursor:default}
 .bnav span{color:#fbecc0;text-shadow:0 1px 2px rgba(0,0,0,.6);font-size:14px;min-width:4.5em;text-align:center;font-family:'Gowun Batang',serif;letter-spacing:.1em}
-.bnav button.xbtn{width:2.4em;height:2.4em;padding:0;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1;margin-left:.2em}
+.xbtn{position:absolute;right:20px;bottom:18px;z-index:12;width:30px;height:30px;padding:0;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:15px;line-height:1;color:#5a3a1c;background:rgba(255,250,240,.85);border:1px solid rgba(166,124,52,.7);box-shadow:0 1px 4px rgba(60,35,10,.25);
+  opacity:0;pointer-events:none;transition:opacity .4s,background .2s,color .2s,transform .2s}
+.book.open .xbtn{opacity:.8;pointer-events:auto}
+.book.riffle .xbtn{opacity:0 !important;pointer-events:none}
+.xbtn:hover,.xbtn:focus-visible{opacity:1;background:#4a2a14;color:#f6e7b8;transform:scale(1.08);outline:none}
 /* 비단 책갈피 끈 */
 .silk{position:absolute;left:82%;top:calc(100% + 4px);width:15px;height:78px;z-index:-1;opacity:0;transition:opacity .5s 1.3s;
   background:linear-gradient(90deg,#5a1020,#9a2a3a 45%,#c0485a 55%,#7a1a2a);clip-path:polygon(0 0,100% 0,100% 100%,50% 84%,0 100%);filter:drop-shadow(1px 2px 2px rgba(0,0,0,.5))}
@@ -678,7 +688,8 @@ body.reading .hud{opacity:0;pointer-events:none}
       </div>
       <div class="face back"></div>
     </div>
-    <div class="bnav"><button id="prevB">◀ 이전</button><span id="pgInfo"></span><button id="nextB">다음 ▶</button><button id="closeBook" class="xbtn" aria-label="책 덮기" title="책 덮기">✕</button></div>
+    <div class="bnav"><button id="prevB">◀ 이전</button><span id="pgInfo"></span><button id="nextB">다음 ▶</button></div>
+    <button id="closeBook" class="xbtn" aria-label="책 덮기" title="책 덮기">✕</button>
   </div>
   <div id="tocPop"><div class="card"><h3>📑 목차 <button id="tocX" aria-label="닫기">✕</button></h3><ul class="toc" id="tocList"></ul></div></div>
 </div>
@@ -1104,6 +1115,10 @@ CH[1].start=page('history',`${head('history','도서관학과에서<br>문헌정
 </ol></div>
 </div>`);
 
+page('history',`${head('history','학과를 이끄는<br>교수진','새로 학과에 합류한 교수님들을 소개해요.',D(17))}
+<div class="profs"><div class="prof"><span class="medal"><svg viewBox="0 0 100 100"><path d="M18 22 L36 44 L26 52 Z M82 22 L64 44 L74 52 Z" fill="#c9692e"/><path d="M22 28 L32 42 L27 46 Z M78 28 L68 42 L73 46 Z" fill="#3a2418"/><path d="M50 30 C 74 30, 84 48, 80 60 C 74 74, 60 82, 50 84 C 40 82, 26 74, 20 60 C 16 48, 26 30, 50 30 Z" fill="#d97a36"/><path d="M50 84 C 40 82, 28 74, 24 62 C 34 60, 44 66, 50 72 C 56 66, 66 60, 76 62 C 72 74, 60 82, 50 84 Z" fill="#fbf3e6"/><circle cx="39" cy="54" r="4" fill="#2a1a10"/><circle cx="61" cy="54" r="4" fill="#2a1a10"/><circle cx="40.4" cy="52.6" r="1.3" fill="#fff"/><circle cx="62.4" cy="52.6" r="1.3" fill="#fff"/><ellipse cx="50" cy="70" rx="4.5" ry="3.2" fill="#2a1a10"/><path d="M28 40 q4 -6 10 -4 M72 40 q-4 -6 -10 -4" stroke="#fbf3e6" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/></svg></span><b>김신영 교수</b><small>2022년 부임</small></div><div class="prof"><span class="medal"><svg viewBox="0 0 100 100"><circle cx="28" cy="32" r="11" fill="#7a5034"/><circle cx="72" cy="32" r="11" fill="#7a5034"/><circle cx="28" cy="32" r="5.5" fill="#c99a72"/><circle cx="72" cy="32" r="5.5" fill="#c99a72"/><ellipse cx="50" cy="58" rx="30" ry="27" fill="#8a5c3c"/><ellipse cx="50" cy="68" rx="13" ry="10" fill="#e8cfae"/><circle cx="39" cy="53" r="3.8" fill="#1f140c"/><circle cx="61" cy="53" r="3.8" fill="#1f140c"/><circle cx="40.3" cy="51.7" r="1.2" fill="#fff"/><circle cx="62.3" cy="51.7" r="1.2" fill="#fff"/><ellipse cx="50" cy="64" rx="4.5" ry="3.2" fill="#1f140c"/><path d="M50 67 v3 M50 70 q-3 3 -6 1 M50 70 q3 3 6 1" stroke="#5a3a24" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></span><b>박광헌 교수</b><small>2022년 부임</small></div><div class="prof"><span class="medal"><svg viewBox="0 0 100 100"><ellipse cx="38" cy="22" rx="8" ry="20" fill="#efe8de"/><ellipse cx="62" cy="22" rx="8" ry="20" fill="#efe8de"/><ellipse cx="38" cy="22" rx="4" ry="14" fill="#f2b9c1"/><ellipse cx="62" cy="22" rx="4" ry="14" fill="#f2b9c1"/><ellipse cx="50" cy="60" rx="28" ry="25" fill="#f6f1ea"/><circle cx="40" cy="57" r="3.8" fill="#2a1a10"/><circle cx="60" cy="57" r="3.8" fill="#2a1a10"/><circle cx="41.3" cy="55.7" r="1.2" fill="#fff"/><circle cx="61.3" cy="55.7" r="1.2" fill="#fff"/><path d="M47 66 L53 66 L50 69 Z" fill="#e78a98"/><path d="M50 69 v4 M50 73 q-4 3 -7 0 M50 73 q4 3 7 0" stroke="#b07a6a" stroke-width="1.4" fill="none" stroke-linecap="round"/><ellipse cx="32" cy="66" rx="4" ry="2.4" fill="#f2b9c1" opacity=".7"/><ellipse cx="68" cy="66" rx="4" ry="2.4" fill="#f2b9c1" opacity=".7"/></svg></span><b>최예진 교수</b><small>2024년 부임</small></div><div class="prof"><span class="medal"><svg viewBox="0 0 100 100"><path d="M34 30 L26 12 M30 20 L20 16 M66 30 L74 12 M70 20 L80 16" stroke="#8a5a2b" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="24" cy="44" rx="9" ry="5" fill="#b9814a" transform="rotate(-25 24 44)"/><ellipse cx="76" cy="44" rx="9" ry="5" fill="#b9814a" transform="rotate(25 76 44)"/><path d="M50 30 C 68 30, 74 44, 72 56 C 70 70, 60 84, 50 86 C 40 84, 30 70, 28 56 C 26 44, 32 30, 50 30 Z" fill="#c8915a"/><path d="M50 62 C 58 62, 62 70, 60 78 C 58 84, 54 86, 50 86 C 46 86, 42 84, 40 78 C 38 70, 42 62, 50 62 Z" fill="#f3e2c8"/><circle cx="40" cy="52" r="3.8" fill="#2a1a10"/><circle cx="60" cy="52" r="3.8" fill="#2a1a10"/><circle cx="41.3" cy="50.7" r="1.2" fill="#fff"/><circle cx="61.3" cy="50.7" r="1.2" fill="#fff"/><ellipse cx="50" cy="72" rx="4" ry="3" fill="#3a2418"/><circle cx="44" cy="40" r="1.5" fill="#f3e2c8"/><circle cx="56" cy="40" r="1.5" fill="#f3e2c8"/><circle cx="50" cy="36" r="1.5" fill="#f3e2c8"/></svg></span><b>장보성 교수</b><small>2025년 부임</small></div></div>
+<div class="note">사진 대신 동물 그림으로 그렸어요. 교수님별 전공과 연구실은 학과 홈페이지 <b>교수진</b> 메뉴에서 확인할 수 있어요.</div>`);
+
 /* ---------- CHAPTER 03 배움의 지도 ---------- */
 CH[2].start=page('study',`${head('study','문헌정보학이<br>주로 다루는 것들','자료가 모이고, 정리되고, 사람에게 닿기까지',D(2))}
 <ul class="areas">
@@ -1149,19 +1164,13 @@ page('life',`${head('life','우리가<br>머무는 곳','',D(6))}
 <div class="photos photo3" style="--cols:2"><figure><img src="${PH}lab.jpg" alt="컴퓨터가 한 자리씩 놓인 실습실"><figcaption>실습실</figcaption></figure><figure><img src="${PH}lounge-2.jpg" alt="소파와 책장이 있는 쉼터"><figcaption>쉼터</figcaption></figure></div>`);
 
 /* ---------- CHAPTER 05 졸업 후의 길 ---------- */
-CH[4].start=page('career',`${head('career','졸업장과 함께<br>받는 것','',D(12))}
-<div class="stat"><b>2급 정사서</b>문헌정보학사 학위와 함께 취득</div>
-<div class="grid">
-  <div class="box"><b>문헌정보학사</b>4년의 배움을 마치면 받는 학위예요.</div>
-  <div class="box"><b>사서교사</b>교직과정을 이수하면 학교도서관에서 일할 수 있는 사서교사 자격도 얻어요.</div>
-</div>`);
-page('career',`${head('career','함께 준비하면<br>든든한 자격증','전공 공부와 이어지는 자격증들',D(5))}
+CH[4].start=page('career',`${head('career','졸업장과 함께 받는 것,<br>함께 준비하는 것','',D(12))}
+<div class="stat"><b>2급 정사서</b>문헌정보학사 학위와 함께 취득 · 교직 이수 시 사서교사 자격까지</div>
 <div class="jobs">
   <div class="jg"><b>읽고 가르치는 길</b><div class="chips"><span>독서지도사</span><span>사서교사 (교직 이수)</span></div></div>
   <div class="jg"><b>기록을 지키는 길</b><div class="chips"><span>기록물관리전문요원</span></div></div>
   <div class="jg"><b>데이터를 다루는 길</b><div class="chips"><span>ADP</span><span>SQLD</span><span>정보처리기사</span><span>컴퓨터활용능력</span></div></div>
-</div>
-<div class="note">2급 정사서는 졸업과 함께 받고, 나머지는 관심 진로에 맞춰 함께 준비해요.</div>`);
+</div>`);
 page('career',`${head('career','정보가 필요한 곳이라면<br>어디든','사서만이 아니에요. 여러 방향의 길이 열려 있어요.',D(9))}
 <div class="jobs">
   <div class="jg"><b>도서관 · 공공기관</b><div class="chips"><span>사서직 공무원</span><span>사서교사</span><span>국공립 · 대학 · 전문도서관</span><span>국립중앙도서관</span><span>국회도서관</span></div></div>
