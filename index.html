@@ -47,7 +47,7 @@ button{font-family:inherit;cursor:pointer}
 
 /* ---------- 데스크와 부엉이 사서 ---------- */
 #librarian{position:absolute;left:62%;bottom:46%;width:clamp(120px,15vw,210px);transform:translateX(-50%);z-index:3;cursor:pointer;transition:filter .4s}
-#librarian .owl{width:100%;display:block;overflow:visible;filter:drop-shadow(0 6px 8px rgba(0,0,0,.25))}
+#librarian .owl{width:100%;display:block;overflow:visible;will-change:transform;transform:translateZ(0);backface-visibility:hidden}
 .owl .owlHead{transform-box:view-box;transform-origin:110px 120px;animation:owlTilt 6s ease-in-out infinite}
 @keyframes owlTilt{0%,40%,100%{transform:rotate(0)}50%,62%{transform:rotate(-7deg)}72%{transform:rotate(3deg)}}
 .owl .lid{transform-box:fill-box;transform-origin:50% 100%;animation:owlBlink 5s infinite}
@@ -80,7 +80,12 @@ button{font-family:inherit;cursor:pointer}
 #ferret{position:absolute;bottom:22%;left:-28%;width:clamp(120px,15vw,210px);z-index:5;transition:left 3.2s linear}
 #ferret .inner{transition:transform .35s}
 #ferret.flip .inner{transform:scaleX(-1)}
-#ferret svg{width:100%;height:auto;overflow:visible;display:block;filter:drop-shadow(0 8px 6px rgba(0,0,0,.25))}
+#ferret svg{position:relative;width:100%;height:auto;overflow:visible;display:block;will-change:transform;backface-visibility:hidden}
+/* 그림자는 움직이는 그림에 필터로 씌우지 않고 따로 고정해 둠(매 프레임 다시 그리며 떨려 보이는 현상 방지) */
+#ferret::before{content:"";position:absolute;left:16%;right:10%;bottom:-3%;height:13%;border-radius:50%;background:radial-gradient(ellipse at center,rgba(40,24,10,.32) 0%,rgba(40,24,10,.16) 45%,rgba(40,24,10,0) 72%);pointer-events:none}
+#librarian{will-change:transform;backface-visibility:hidden}
+#ferret{will-change:left}
+@media (prefers-reduced-motion:reduce){.owl .owlHead,#ferret .tail,#ferret.chat:not(.walking) svg,.sign .sign-emo{animation:none !important}}
 #ferret.walking svg{animation:hop .42s ease-in-out infinite}
 #ferret.walking .legA{animation:legA .42s ease-in-out infinite}
 #ferret.walking .legB{animation:legB .42s ease-in-out infinite}
@@ -92,8 +97,8 @@ button{font-family:inherit;cursor:pointer}
 @keyframes tail{50%{transform:rotate(-8deg)}}
 #ferret .eyelid{animation:blink 4s infinite}
 @keyframes blink{0%,92%,100%{transform:scaleY(0)}95%{transform:scaleY(1)}}
-#ferret.chat:not(.walking) svg{animation:chatHop .32s ease-in-out infinite}
-@keyframes chatHop{50%{transform:translateY(-5px) rotate(-1.5deg)}}
+#ferret.chat:not(.walking) svg{animation:chatHop .56s ease-in-out infinite}
+@keyframes chatHop{50%{transform:translateY(-3px)}}
 #dialog .emo{display:inline-block;width:1.7em;height:1.55em;vertical-align:-.35em;animation:emoPop .5s cubic-bezier(.3,1.6,.5,1)}
 @keyframes emoPop{from{transform:scale(0) rotate(-20deg)}to{transform:none}}
 #ferret.glow svg{animation:glowPulse 1.2s ease-in-out infinite}
